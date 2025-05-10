@@ -6,7 +6,9 @@
   --background-color: whitesmoke;
   --text-color: rgb(26, 26, 26);
   --secondary-text-color: lightslategrey;
+  --third-text-color: rgb(255, 255, 255);
   --primary-color: rgb(255, 65, 65);
+  --primary-color-dark: rgb(253, 69, 69);
   --card-bg-color: rgba(255, 255, 255, 0.5);
   --card-shadow-color: rgba(211, 211, 211, 0.5);
   --card-border: rgba(211, 211, 211, 0.5);
@@ -21,7 +23,9 @@
   --background-color: #121212;
   --text-color: rgb(230, 230, 230);
   --secondary-text-color: rgb(150, 150, 150);
+  --third-text-color: rgb(15, 15, 15);
   --primary-color: rgb(255, 110, 110);
+  --primary-color-dark: rgb(230, 70, 70);
   --card-bg-color: rgba(32, 32, 32, 0.5);
   --card-shadow-color: rgba(0, 0, 0, 0.5);
   --card-border: rgba(50, 50, 50, 0.5);
@@ -48,38 +52,66 @@ html {
   min-height: 800px;
   display: flex;
   justify-content: center;
+  scroll-behavior: smooth;
 }
 
 body {
   width: 100%;
   min-width: 400px;
-  max-width: 1920px;
+  max-width: 1500px;
   height: fit-content;
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 100px;
   overflow-x: hidden;
+  margin: auto 0;
 }
 
 svg {
   color: var(--text-color);
 }
 
-nav {
+#navbar {
   width: 100vw;
-  height: 70px;
+  height: 80px;
   background-color: var(--background-color);
   border-bottom: 1px solid var(--border-color);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  transition: background-color 0.5s ease, height 0.5s ease;
 }
 
-nav > a {
+#navbar.stuck {
+  background-color: var(--card-bg-color);
+  height: 60px;
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: fit-content;
+}
+
+.left a {
+  height: 100%;
+  height: fit-content;
+}
+
+.left a svg {
+  color: var(--text-color);
+}
+
+.left a:first-child {
   font-family: "Caveat", cursive;
   font-size: 22px;
   font-weight: 600;
@@ -129,7 +161,6 @@ menu .language-toggle {
   justify-content: center;
   user-select: none;
   cursor: pointer;
-  border: 1px solid var(--background-color);
   transition: transform 0.2s ease;
 }
 
@@ -167,7 +198,7 @@ menu .language-toggle:hover {
   background-color: var(--card-bg-color);
   border: 1px solid var(--border-color);
   box-shadow: 0px 0px 16px var(--card-shadow-color);
-  z-index: 1;
+  z-index: 1001;
   width: fit-content;
   height: fit-content;
   padding: 0.3rem;
@@ -258,6 +289,13 @@ menu > a:hover {
 menu .get-in-touch {
   border: 1px solid var(--border-color);
   border-radius: 100px;
+  background-color: var(--primary-color-dark);
+  color: var(--third-text-color);
+}
+
+menu .get-in-touch:hover {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
 }
 
 header {
@@ -290,9 +328,16 @@ header h5 {
   font-size: 18px;
   font-weight: 500;
   color: var(--secondary-text-color);
-  width: 800px;
+  max-width: 1000px;
   text-align: center;
   line-height: 2rem;
+}
+
+header h5 strong {
+  color: var(--primary-color);
+
+  text-decoration: wavy underline;
+  text-decoration-color: var(--secondary-text-color);
 }
 
 main {
@@ -392,6 +437,43 @@ main {
   user-select: none;
   border: 1px solid var(--card-border);
   object-fit: cover;
+  opacity: 0;
+  animation: loading-image 1s ease forwards;
+}
+
+.card:nth-child(1) img {
+  animation-delay: 0.8s;
+}
+
+.card:nth-child(2) img {
+  animation-delay: 0.6s;
+}
+
+.card:nth-child(3) img {
+  animation-delay: 0.4s;
+}
+
+.card:nth-child(4) img {
+  animation-delay: 0.6s;
+}
+
+.card:nth-child(5) img {
+  animation-delay: 0.8s;
+}
+
+@keyframes loading-image {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
 }
 
 .card span {
@@ -447,4 +529,374 @@ main {
 
 .card a svg {
   color: var(--link-hover-rotate-color);
+}
+
+#skills {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  gap: 5rem;
+  padding: 0;
+  width: 1200px;
+  margin-top: 5rem;
+  height: fit-content;
+}
+
+#skills > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+#skills > div > h5 {
+  font-size: 46px;
+  font-weight: 700;
+  width: 100%;
+  color: var(--primary-color);
+  text-transform: capitalize;
+  font-family: "Caveat", cursive;
+}
+
+.experience .items {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.experience .items img {
+  width: fit-content;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  background-color: var(--border-color);
+  padding: 0.5rem;
+  aspect-ratio: 1/1;
+  animation: fade-in 0.5s ease;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.experience .items .item {
+  background-color: var(--card-bg-color);
+  box-shadow: 0 0 20px var(--card-shadow-color);
+  backdrop-filter: blur(20px);
+  height: 90px;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.experience .item .details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.experience .item .details .top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.experience .item .details .top p {
+  font-family: "Caveat", cursive;
+  font-size: 20px;
+  color: var(--primary-color-dark);
+}
+
+.experience .details h5 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--header-title-color);
+}
+
+.experience .progress-bar {
+  height: 15px;
+  background-color: var(--border-color);
+  width: 100%;
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+
+.experience .progress {
+  height: 100%;
+  background-color: var(--primary-color-dark);
+  border-radius: 0.3rem;
+  position: relative;
+  animation: progress 1s ease-in-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+}
+
+.experience .progress-text {
+  position: absolute;
+  right: 0.2rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--third-text-color);
+  width: fit-content;
+  opacity: 0;
+  animation: fade-in 0.5s ease forwards;
+  animation-delay: 1s;
+}
+
+.languages .items {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.languages .items img {
+  width: fit-content;
+  height: 100%;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+  animation: fade-in 0.5s ease;
+}
+
+.languages .items .item {
+  background-color: var(--card-bg-color);
+  box-shadow: 0 0 20px var(--card-shadow-color);
+  backdrop-filter: blur(20px);
+  height: 100px;
+  border-radius: 1rem;
+  width: 100%;
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.languages .item .wrap {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 1rem);
+  width: calc(100% - 1rem);
+  gap: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--card-bg-color);
+  box-shadow: 0 0 20px var(--card-shadow-color);
+  backdrop-filter: blur(20px);
+  padding: 1rem;
+  border-radius: 0.6rem;
+  z-index: 11;
+  border: 1px solid var(--card-border);
+  gap: 1.5rem;
+}
+
+.languages .item .progress-bar {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.languages .item .progress-bar .progress {
+  width: 100%;
+  background-color: var(--primary-color-dark);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  animation: progress2 1s ease-in-out forwards;
+  border-radius: 0.3rem;
+}
+
+@keyframes progress2 {
+  0% {
+    height: 0%;
+  }
+}
+
+.languages .details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.languages .details h5 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--header-title-color);
+}
+
+.languages .details p {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--header-title-color);
+}
+
+#projects {
+  scroll-margin-block-start: 45vh;
+}
+
+#skills {
+  scroll-margin-block-start: 10vh;
+}
+
+#contact {
+  padding: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.contact .icon {
+  background-color: var(--card-border);
+  border-radius: 2rem;
+  height: 100%;
+  width: fit-content;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  min-height: 250px;
+  background-color: red;
+  width: 750px;
+  border-radius: 3rem;
+  background-color: var(--card-bg-color);
+  box-shadow: 0 0 20px var(--card-shadow-color);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  padding: 2rem;
+  gap: 2rem;
+  color: var(--text-color);
+}
+
+.contact .right {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.contact .right h5 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--header-title-color);
+}
+
+.contact .info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact .details {
+}
+
+.contact .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.contact .item img {
+}
+
+.contact .details label {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary-color-dark);
+  text-transform: capitalize;
+  font-family: "Caveat", cursive;
+}
+
+.contact .details p,
+.contact .details a {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: color 0.2s ease;
+}
+
+.contact .details a:hover {
+  color: var(--primary-color);
+}
+
+footer {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  z-index: -1;
+}
+
+footer span {
+  font-family: "Caveat", cursive;
+  font-size: 18px;
+  color: var(--primary-color);
 }
