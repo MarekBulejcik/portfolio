@@ -16,6 +16,8 @@
   --header-title-color: rgb(43, 44, 49);
   --hover-background-color: rgb(230, 230, 230);
   --link-hover-rotate-color: grey;
+  --navbar-height: 80px;
+  --navbar-height-stuck: 60px;
 }
 
 /* Dark Mode */
@@ -33,6 +35,8 @@
   --header-title-color: rgb(230, 230, 230);
   --hover-background-color: rgb(40, 40, 40);
   --link-hover-rotate-color: lightgrey;
+  --navbar-height: 80px;
+  --navbar-height-stuck: 60px;
 }
 
 * {
@@ -57,7 +61,7 @@ html {
 
 body {
   width: 100%;
-  min-width: 400px;
+  min-width: 320px;
   max-width: 1500px;
   height: fit-content;
   background-color: var(--background-color);
@@ -74,7 +78,7 @@ svg {
 
 #navbar {
   width: 100vw;
-  height: 80px;
+  height: var(--navbar-height);
   background-color: var(--background-color);
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -90,7 +94,7 @@ svg {
 
 #navbar.stuck {
   background-color: var(--card-bg-color);
-  height: 60px;
+  height: var(--navbar-height-stuck);
 }
 
 .left {
