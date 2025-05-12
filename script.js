@@ -1,8 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const currentTheme = localStorage.getItem("theme");
+// Apply theme immediately to prevent flash
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme) {
+  document.documentElement.classList.add(currentTheme);
+}
 
+document.addEventListener("DOMContentLoaded", function () {
+  // Update theme toggle button after DOM is loaded
   if (currentTheme) {
-    document.documentElement.classList.add(currentTheme);
     const styleSwitch = document.querySelector(".theme-toggle");
     if (styleSwitch) {
       styleSwitch.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
