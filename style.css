@@ -651,10 +651,19 @@ main {
   width: 100%;
 }
 
+.experience .item .details .top h5 {
+  flex-shrink: 0;
+}
+
 .experience .item .details .top p {
   font-family: "Caveat", cursive;
   font-size: 20px;
   color: var(--primary-color-dark);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .experience .details h5 {
