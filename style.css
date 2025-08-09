@@ -141,9 +141,8 @@ menu .theme-toggle {
 }
 menu .theme-toggle:hover,
 menu .mobile-menu-toggle:hover {
-    background-color: var(--hover-background-color);
+  background-color: var(--hover-background-color);
 }
-
 
 menu .language-toggle {
   aspect-ratio: 1/1;
@@ -269,6 +268,10 @@ menu .language-toggle:hover {
   transition: background-color 0.2s ease, transform 0.2s ease;
   user-select: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
 }
 
 .nav-links > a:active {
@@ -293,11 +296,9 @@ menu .language-toggle:hover {
   background-color: var(--hover-background-color);
 }
 
-
 .mobile-menu-toggle {
-    display: none;
+  display: none;
 }
-
 
 @keyframes wait {
   0% {
@@ -539,11 +540,12 @@ main {
 
 .card a:hover {
   background-color: var(--hover-background-color);
-  rotate: 90deg;
+  rotate: 45deg;
+  box-shadow: 0 0 10px var(--primary-color-dark);
 }
 
 .card a:active {
-  rotate: 360deg;
+  rotate: 0deg;
   transition: 0.1s ease;
   border-color: grey;
   transform: scale(80%);
@@ -872,18 +874,12 @@ main {
   gap: 1rem;
 }
 
-.contact .details {
-}
-
 .contact .item {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: start;
   gap: 1rem;
-}
-
-.contact .item img {
 }
 
 .contact .details label {
@@ -1161,10 +1157,12 @@ footer span {
   #navbar {
     flex-wrap: wrap;
     height: auto; /* Allow navbar to grow */
-    min-height: var(--navbar-height-stuck); /* Ensure it's at least the stuck height */
+    min-height: var(
+      --navbar-height-stuck
+    ); /* Ensure it's at least the stuck height */
   }
   #navbar.stuck {
-     min-height: var(--navbar-height-stuck);
+    min-height: var(--navbar-height-stuck);
   }
 
   menu {
@@ -1188,7 +1186,7 @@ footer span {
     width: 18px; /* Match theme/language icon size */
     height: 18px;
   }
-  
+
   .nav-links {
     display: none;
     flex-direction: column;
@@ -1212,17 +1210,17 @@ footer span {
     width: 100%;
     padding: 0.8rem 1rem;
     text-align: left;
-    border-radius: 0; /* Remove individual border-radius for full-width items */
+    border-radius: 0;
   }
-   .nav-links a:not(:last-child) {
+  .nav-links a:not(:last-child) {
     border-bottom: 1px solid var(--border-color);
   }
 
   .nav-links .get-in-touch {
     margin-top: 0.5rem;
     text-align: center;
-    border-radius: 100px; /* Keep pill shape */
-    padding: 0.6rem 1rem !important; /* Adjust padding if needed */
+    border-radius: 100px;
+    padding: 0.6rem 1rem !important;
     font-size: 13px;
   }
 
